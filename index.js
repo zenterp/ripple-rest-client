@@ -17,6 +17,18 @@ Client.prototype.ping = function(callback){
   });
 };
 
+Client.prototype.getAccountPayments = function (opts, callback) {
+  var account = opts ? opts.ripple_address : this.account;
+  var url = this.api+'v1/accounts/'+account+'/payments';
+  request.get({ url: url, json: true }, function(error, resp, body){
+    if (error) {
+      callback(new Error(error));
+    } else {
+      callback(null, body);
+    }
+  });
+};
+
 Client.prototype.sendPayment = function(opts, callback){
 
   if (this.secret != '') {

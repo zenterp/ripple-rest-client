@@ -11,7 +11,7 @@ describe('Get account payments info', function(){
   });
   
   it('should get 10 (max) of the most recent payments', function(done){
-    rippleRestClient.getAccountPaymentsInfo(null, function(error, response){
+    rippleRestClient.getAccountPayments(null, function(error, response){
       assert(!error);
       assert.strictEqual(response.success, true);
       assert(response.payments instanceof Array);
@@ -21,7 +21,7 @@ describe('Get account payments info', function(){
   });
 
   it('should fail because of an invalid ripple address', function(done) {
-    rippleRestClient.getAccountPaymentsInfo({
+    rippleRestClient.getAccountPayments({
         ripple_address: 'invalidAddress'
     }, function(error, response){
       assert.strictEqual(response.success, false);

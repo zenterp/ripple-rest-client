@@ -92,6 +92,7 @@ Client.prototype.getAccountBalance = function(callback){
 
   http
     .get(url)
+    .query({ limit: 'all' })
     .end(function(error, response){
       if (error) {
         return callback(error);
